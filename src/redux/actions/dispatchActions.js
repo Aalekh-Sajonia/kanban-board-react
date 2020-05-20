@@ -9,7 +9,17 @@ export const addVerticalList = (title) => {
   }
 }
 
-export const deleteCard = (id) => {
+export const deleteCard = (listID,cardID) => {
+  return {
+    type: actions.DELETE_CARD,
+    payload: {
+      listID: listID,
+      cardID: cardID
+    }
+  }
+}
+
+export const deleteList = (id) => {
   return {
     type: actions.DELETE_LIST,
     payload: {
@@ -32,8 +42,7 @@ export const reArr = (
   droppableIDS,
   droppableIDE,
   droppableIndexS,
-  droppableIndexE,
-  draggableId
+  droppableIndexE
 ) => {
   return {
     type: actions.DRAG_SUCCESS,
@@ -41,8 +50,7 @@ export const reArr = (
       droppableIDS,
       droppableIDE,
       droppableIndexS,
-      droppableIndexE,
-      draggableId
+      droppableIndexE
     }
   }
 }

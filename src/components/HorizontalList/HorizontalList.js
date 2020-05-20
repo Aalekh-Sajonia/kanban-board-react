@@ -8,13 +8,19 @@ import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
-import {editCard} from '../../redux/actions/dispatchActions';
+import {editCard,deleteCard} from '../../redux/actions/dispatchActions';
 import {connect} from 'react-redux';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class HorizontalList extends React.Component {
   state = {
     text: '',
     clicked: false
+  }
+
+  onDeleteCard = (e) => {
+    e.stopPropagation();
+    this.props.deleteCard(this.props.listID,this.props.id);
   }
 
   onClicked = () => {
@@ -61,10 +67,13 @@ class HorizontalList extends React.Component {
                 this.state.clicked ? (
                   <React.Fragment>
                   <IconButton onMouseDown={this.onEditDone} size = "small" aria-label="Done">
-                  <DoneIcon />
+                    <DoneIcon />
                   </IconButton>
                   <IconButton onMouseDown={this.onClickedCancell} size = "small" aria-label="Cancel">
-                  <ClearIcon />
+                    <ClearIcon />
+                  </IconButton>
+                  <IconButton onMouseDown={this.onDeleteCard} aria-label="Delete" size = "small">
+                    <DeleteIcon fontSize="small" />
                   </IconButton>
                   </React.Fragment>
                 ) : null
@@ -82,6 +91,7 @@ class HorizontalList extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     editCard: (listID,cardID,text) => dispatch(editCard(listID,cardID,text)),
+    deleteCard: (listID,cardID) => dispatch(deleteCard(listID,cardID))
   }
 }
 

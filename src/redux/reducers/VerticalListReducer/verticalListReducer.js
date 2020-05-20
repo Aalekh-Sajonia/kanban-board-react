@@ -71,6 +71,26 @@ const verticalListReducer = (state=defaultState,action) => {
       }
       listNo += 1;
       return [...state,temp];
+
+    case actions.DELETE_CARD:
+        console.log(action.payload);
+        const tempState1 = [];
+
+        state.forEach(ele => {
+          if(ele.id !== action.payload.listID) {
+            tempState1.push(ele);
+          } else {
+            let x = [];
+            ele.cards.forEach(e => {
+              if(e.id !== action.payload.cardID) {
+                x.push(e);
+              }
+            })
+            tempState1.push({...ele,cards:x});
+          }
+        })
+        // const card = list.cards.splice(droppableIndexS,1);
+        return tempState1;
     case actions.EDIT_CARD:
       const tempState = state.map(ele => {
         if(ele.id === action.payload.listID) {
@@ -114,20 +134,19 @@ const verticalListReducer = (state=defaultState,action) => {
       console.log(newState);
       return newState;
     case actions.DRAG_SUCCESS:
+    {
       const temp1 = [...state];
       const {
         droppableIDS,
         droppableIDE,
         droppableIndexS,
-        droppableIndexE,
-        draggableId
+        droppableIndexE
       } = action.payload;
 
       console.log(droppableIDS,
       droppableIDE,
       droppableIndexS,
-      droppableIndexE,
-      draggableId);
+      droppableIndexE);
 
       if(droppableIDS === droppableIDE) {
         const list = state.find(list => droppableIDS === list.id);
@@ -143,6 +162,7 @@ const verticalListReducer = (state=defaultState,action) => {
       }
 
       return temp1;
+    }
     default:
       return state;
   }

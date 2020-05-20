@@ -16,12 +16,11 @@ class App extends React.Component {
       return ;
     }
 
-    this.props.sort(
+    this.props.reArr(
       source.droppableId,
       destination.droppableId,
       source.index,
       destination.index,
-      draggableId
     )
 
   }
@@ -46,18 +45,16 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sort: (
+    reArr: (
       droppableIDS,
       droppableIDE,
       droppableIndexS,
-      droppableIndexE,
-      draggableId
+      droppableIndexE
     ) => dispatch(reArr(
       droppableIDS,
       droppableIDE,
       droppableIndexS,
-      droppableIndexE,
-      draggableId
+      droppableIndexE
     )),
   }
 }

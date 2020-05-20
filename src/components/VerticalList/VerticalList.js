@@ -6,7 +6,7 @@ import {Droppable} from 'react-beautiful-dnd';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import {connect} from 'react-redux';
-import {deleteCard} from '../../redux/actions/dispatchActions';
+import {deleteList} from '../../redux/actions/dispatchActions';
 
 class VerticalList extends React.Component {
 
@@ -43,7 +43,7 @@ render() {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteList: (id) => dispatch(deleteCard(id)),
+    deleteList: (id) => dispatch(deleteList(id)),
   }
 }
 
