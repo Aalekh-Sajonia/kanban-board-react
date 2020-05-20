@@ -1,26 +1,65 @@
 import React from 'react';
-import logo from './logo.svg';
+import VerticalList from './components/VerticalList/VerticalList';
+import {connect} from "react-redux";
+import {StyledDiv} from "./StyledApp";
+import AddButton from './components/AddButton/AddButton';
+import {DragDropContext} from 'react-beautiful-dnd';
+import {reArr} from './redux/actions/dispatchActions';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  onDragEnd = (res) => {
+    const {destination,source,draggableId} = res;
+
+    if(!destination) {
+      return ;
+    }
+
+    this.props.sort(
+      source.droppableId,
+      destination.droppableId,
+      source.index,
+      destination.index,
+      draggableId
+    )
+
+  }
+
+  render() {
+    const {verticalListReducer} = this.props;
+    return (
+      <DragDropContext onDragEnd = {this.onDragEnd}>
+        <h1>Welcome Board</h1>
+        <StyledDiv>
+        {verticalListReducer.map(ele => <VerticalList id={ele.id} key={ele.id} title={ele.title} cards={ele.cards}/>)}
+        <AddButton list/>
+        </StyledDiv>
+      </DragDropContext>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  verticalListReducer: state.verticalListReducer
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sort: (
+      droppableIDS,
+      droppableIDE,
+      droppableIndexS,
+      droppableIndexE,
+      draggableId
+    ) => dispatch(reArr(
+      droppableIDS,
+      droppableIDE,
+      droppableIndexS,
+      droppableIndexE,
+      draggableId
+    )),
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
