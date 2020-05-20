@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   width: 300px;
-  background-color: #dddddd;
+  background-color: #EBECF0;
   border-radius: 3px;
   padding: 8px;
   margin-right: 8px;
@@ -26,12 +26,12 @@ const StyledDivScroll = styled.div`
     width: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: #dddddd;
+    background: #EBECF0;
   }
   ::-webkit-scrollbar-thumb {
     background-color: #A9A9A9;
     border-radius: 20px;
-    border: 4px solid #dddddd;
+    border: 4px solid #EBECF0;
   }
 `;
 

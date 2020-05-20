@@ -89,7 +89,6 @@ const verticalListReducer = (state=defaultState,action) => {
             tempState1.push({...ele,cards:x});
           }
         })
-        // const card = list.cards.splice(droppableIndexS,1);
         return tempState1;
     case actions.EDIT_CARD:
       const tempState = state.map(ele => {

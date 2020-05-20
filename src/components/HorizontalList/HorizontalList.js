@@ -57,7 +57,7 @@ class HorizontalList extends React.Component {
                 <React.Fragment>
                 {
                   this.state.clicked ? (
-                    <StyledTextarea  onChange = {this.onTextChange} value = {this.state.text} autoFocus>
+                    <StyledTextarea onChange = {this.onTextChange} value = {this.state.text} autoFocus>
                       {this.state.text}
                     </StyledTextarea>
                   ) : this.props.text
