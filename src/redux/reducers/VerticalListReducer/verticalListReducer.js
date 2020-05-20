@@ -1,6 +1,6 @@
 import {actions} from '../../actions/actions';
 
-let cardNo = 5;
+let cardNo = 11;
 let listNo = 2;
 const defaultState = [
   {
@@ -23,7 +23,7 @@ const defaultState = [
     cards: [
       {
         id: `card-2`,
-        text: "Meetin"
+        text: "Meeting"
       },
       {
         id: `card-3`,
@@ -32,6 +32,30 @@ const defaultState = [
       {
         id: `card-4`,
         text: "Coffee"
+      },
+      {
+        id: `card-5`,
+        text: "food"
+      },
+      {
+        id: `card-6`,
+        text: "chill"
+      },
+      {
+        id: `card-7`,
+        text: "travel"
+      },
+      {
+        id: `card-8`,
+        text: "bug fix"
+      },
+      {
+        id: `card-9`,
+        text: "repeat"
+      },
+      {
+        id: `card-10`,
+        text: ":)"
       }
     ],
   }
